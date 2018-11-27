@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feri.mapper.EnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="com.feri.pojo.Enterprise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="companyname" property="companyname" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="contactphone" property="contactphone" jdbcType="VARCHAR" />
+    <result column="belongtoindustry" property="belongtoindustry" jdbcType="INTEGER" />
+    <result column="companytype" property="companytype" jdbcType="INTEGER" />
+    <result column="setupdate" property="setupdate" jdbcType="VARCHAR" />
+    <result column="companypeoplenumber" property="companypeoplenumber" jdbcType="INTEGER" />
+    <result column="registermany" property="registermany" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="qqemail" property="qqemail" jdbcType="VARCHAR" />
+    <result column="emailremind" property="emailremind" jdbcType="INTEGER" />
+    <result column="companyip" property="companyip" jdbcType="VARCHAR" />
+    <result column="companyaddress" property="companyaddress" jdbcType="VARCHAR" />
+    <result column="companyprofile" property="companyprofile" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, companyname, contact, contactphone, belongtoindustry, companytype, 
+    setupdate, companypeoplenumber, registermany, fax, qqemail, emailremind, companyip, 
+    companyaddress, companyprofile
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_enterprise_gongsi
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_enterprise_gongsi
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.feri.pojo.Enterprise" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_enterprise_gongsi (username, password, companyname, 
+      contact, contactphone, belongtoindustry, 
+      companytype, setupdate, companypeoplenumber, 
+      registermany, fax, qqemail, 
+      emailremind, companyip, companyaddress, 
+      companyprofile)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{contactphone,jdbcType=VARCHAR}, #{belongtoindustry,jdbcType=INTEGER}, 
+      #{companytype,jdbcType=INTEGER}, #{setupdate,jdbcType=VARCHAR}, #{companypeoplenumber,jdbcType=INTEGER}, 
+      #{registermany,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{qqemail,jdbcType=VARCHAR}, 
+      #{emailremind,jdbcType=INTEGER}, #{companyip,jdbcType=VARCHAR}, #{companyaddress,jdbcType=VARCHAR}, 
+      #{companyprofile,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.feri.pojo.Enterprise" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_enterprise_gongsi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="companyname != null" >
+        companyname,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="contactphone != null" >
+        contactphone,
+      </if>
+      <if test="belongtoindustry != null" >
+        belongtoindustry,
+      </if>
+      <if test="companytype != null" >
+        companytype,
+      </if>
+      <if test="setupdate != null" >
+        setupdate,
+      </if>
+      <if test="companypeoplenumber != null" >
+        companypeoplenumber,
+      </if>
+      <if test="registermany != null" >
+        registermany,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="qqemail != null" >
+        qqemail,
+      </if>
+      <if test="emailremind != null" >
+        emailremind,
+      </if>
+      <if test="companyip != null" >
+        companyip,
+      </if>
+      <if test="companyaddress != null" >
+        companyaddress,
+      </if>
+      <if test="companyprofile != null" >
+        companyprofile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtoindustry != null" >
+        #{belongtoindustry,jdbcType=INTEGER},
+      </if>
+      <if test="companytype != null" >
+        #{companytype,jdbcType=INTEGER},
+      </if>
+      <if test="setupdate != null" >
+        #{setupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="companypeoplenumber != null" >
+        #{companypeoplenumber,jdbcType=INTEGER},
+      </if>
+      <if test="registermany != null" >
+        #{registermany,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="qqemail != null" >
+        #{qqemail,jdbcType=VARCHAR},
+      </if>
+      <if test="emailremind != null" >
+        #{emailremind,jdbcType=INTEGER},
+      </if>
+      <if test="companyip != null" >
+        #{companyip,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddress != null" >
+        #{companyaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyprofile != null" >
+        #{companyprofile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.feri.pojo.Enterprise" >
+    update t_enterprise_gongsi
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        companyname = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactphone != null" >
+        contactphone = #{contactphone,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtoindustry != null" >
+        belongtoindustry = #{belongtoindustry,jdbcType=INTEGER},
+      </if>
+      <if test="companytype != null" >
+        companytype = #{companytype,jdbcType=INTEGER},
+      </if>
+      <if test="setupdate != null" >
+        setupdate = #{setupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="companypeoplenumber != null" >
+        companypeoplenumber = #{companypeoplenumber,jdbcType=INTEGER},
+      </if>
+      <if test="registermany != null" >
+        registermany = #{registermany,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="qqemail != null" >
+        qqemail = #{qqemail,jdbcType=VARCHAR},
+      </if>
+      <if test="emailremind != null" >
+        emailremind = #{emailremind,jdbcType=INTEGER},
+      </if>
+      <if test="companyip != null" >
+        companyip = #{companyip,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddress != null" >
+        companyaddress = #{companyaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyprofile != null" >
+        companyprofile = #{companyprofile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.feri.pojo.Enterprise" >
+    update t_enterprise_gongsi
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      companyname = #{companyname,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      contactphone = #{contactphone,jdbcType=VARCHAR},
+      belongtoindustry = #{belongtoindustry,jdbcType=INTEGER},
+      companytype = #{companytype,jdbcType=INTEGER},
+      setupdate = #{setupdate,jdbcType=VARCHAR},
+      companypeoplenumber = #{companypeoplenumber,jdbcType=INTEGER},
+      registermany = #{registermany,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      qqemail = #{qqemail,jdbcType=VARCHAR},
+      emailremind = #{emailremind,jdbcType=INTEGER},
+      companyip = #{companyip,jdbcType=VARCHAR},
+      companyaddress = #{companyaddress,jdbcType=VARCHAR},
+      companyprofile = #{companyprofile,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

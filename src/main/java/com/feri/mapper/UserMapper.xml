@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feri.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.feri.pojo.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="birthdate" property="birthdate" jdbcType="VARCHAR" />
+    <result column="schoolRecord" property="schoolrecord" jdbcType="INTEGER" />
+    <result column="objectiveone" property="objectiveone" jdbcType="VARCHAR" />
+    <result column="objectivetwo" property="objectivetwo" jdbcType="VARCHAR" />
+    <result column="expectedsalary" property="expectedsalary" jdbcType="INTEGER" />
+    <result column="marriage" property="marriage" jdbcType="INTEGER" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="heightstatus" property="heightstatus" jdbcType="INTEGER" />
+    <result column="professional" property="professional" jdbcType="VARCHAR" />
+    <result column="Politicallandscape" property="politicallandscape" jdbcType="VARCHAR" />
+    <result column="national" property="national" jdbcType="VARCHAR" />
+    <result column="Nativeplace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="Workexperience" property="workexperience" jdbcType="INTEGER" />
+    <result column="Expectedworkingaddress" property="expectedworkingaddress" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, flag, name, phone, sex, birthdate, schoolRecord, objectiveone, 
+    objectivetwo, expectedsalary, marriage, height, heightstatus, professional, Politicallandscape, 
+    national, Nativeplace, weight, Workexperience, Expectedworkingaddress
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where
+    <if test="username != null">
+      username = #{username}
+    </if>
+    <if test="phone != null">
+    OR phone = #{phone}
+  </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.feri.pojo.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthdate != null" >
+        birthdate,
+      </if>
+      <if test="schoolrecord != null" >
+        schoolRecord,
+      </if>
+      <if test="objectiveone != null" >
+        objectiveone,
+      </if>
+      <if test="objectivetwo != null" >
+        objectivetwo,
+      </if>
+      <if test="expectedsalary != null" >
+        expectedsalary,
+      </if>
+      <if test="marriage != null" >
+        marriage,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="heightstatus != null" >
+        heightstatus,
+      </if>
+      <if test="professional != null" >
+        professional,
+      </if>
+      <if test="politicallandscape != null" >
+        Politicallandscape,
+      </if>
+      <if test="national != null" >
+        national,
+      </if>
+      <if test="nativeplace != null" >
+        Nativeplace,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="workexperience != null" >
+        Workexperience,
+      </if>
+      <if test="expectedworkingaddress != null" >
+        Expectedworkingaddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthdate != null" >
+        #{birthdate,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolrecord != null" >
+        #{schoolrecord,jdbcType=INTEGER},
+      </if>
+      <if test="objectiveone != null" >
+        #{objectiveone,jdbcType=VARCHAR},
+      </if>
+      <if test="objectivetwo != null" >
+        #{objectivetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedsalary != null" >
+        #{expectedsalary,jdbcType=INTEGER},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="heightstatus != null" >
+        #{heightstatus,jdbcType=INTEGER},
+      </if>
+      <if test="professional != null" >
+        #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="politicallandscape != null" >
+        #{politicallandscape,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="workexperience != null" >
+        #{workexperience,jdbcType=INTEGER},
+      </if>
+      <if test="expectedworkingaddress != null" >
+        #{expectedworkingaddress,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.feri.pojo.User" >
+    update t_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthdate != null" >
+        birthdate = #{birthdate,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolrecord != null" >
+        schoolRecord = #{schoolrecord,jdbcType=INTEGER},
+      </if>
+      <if test="objectiveone != null" >
+        objectiveone = #{objectiveone,jdbcType=VARCHAR},
+      </if>
+      <if test="objectivetwo != null" >
+        objectivetwo = #{objectivetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedsalary != null" >
+        expectedsalary = #{expectedsalary,jdbcType=INTEGER},
+      </if>
+      <if test="marriage != null" >
+        marriage = #{marriage,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="heightstatus != null" >
+        heightstatus = #{heightstatus,jdbcType=INTEGER},
+      </if>
+      <if test="professional != null" >
+        professional = #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="politicallandscape != null" >
+        Politicallandscape = #{politicallandscape,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        national = #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        Nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="workexperience != null" >
+        Workexperience = #{workexperience,jdbcType=INTEGER},
+      </if>
+      <if test="expectedworkingaddress != null" >
+        Expectedworkingaddress = #{expectedworkingaddress,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

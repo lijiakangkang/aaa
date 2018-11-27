@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feri.mapper.EducationexperienceMapper" >
+  <resultMap id="BaseResultMap" type="com.feri.pojo.Educationexperience" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="starttime" property="starttime" jdbcType="CHAR" />
+    <result column="stoptime" property="stoptime" jdbcType="CHAR" />
+    <result column="schoolname" property="schoolname" jdbcType="CHAR" />
+    <result column="professionalname" property="professionalname" jdbcType="CHAR" />
+    <result column="degree" property="degree" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, starttime, stoptime, schoolname, professionalname, degree, uid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_educationexperience_jiaoyujingli
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_educationexperience_jiaoyujingli
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.feri.pojo.Educationexperience" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_educationexperience_jiaoyujingli
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="stoptime != null" >
+        stoptime,
+      </if>
+      <if test="schoolname != null" >
+        schoolname,
+      </if>
+      <if test="professionalname != null" >
+        professionalname,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="starttime != null" >
+        #{starttime,jdbcType=CHAR},
+      </if>
+      <if test="stoptime != null" >
+        #{stoptime,jdbcType=CHAR},
+      </if>
+      <if test="schoolname != null" >
+        #{schoolname,jdbcType=CHAR},
+      </if>
+      <if test="professionalname != null" >
+        #{professionalname,jdbcType=CHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.feri.pojo.Educationexperience" >
+    update t_educationexperience_jiaoyujingli
+    <set >
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=CHAR},
+      </if>
+      <if test="stoptime != null" >
+        stoptime = #{stoptime,jdbcType=CHAR},
+      </if>
+      <if test="schoolname != null" >
+        schoolname = #{schoolname,jdbcType=CHAR},
+      </if>
+      <if test="professionalname != null" >
+        professionalname = #{professionalname,jdbcType=CHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>
